@@ -8,7 +8,6 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import Discord from "next-auth/providers/discord";
 
 import { prisma } from "@acme/db";
-import { Account, Session, User } from "@acme/db/schema";
 
 import { env } from "../env";
 

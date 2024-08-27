@@ -8,13 +8,9 @@
       "types": "./dist/index.d.ts",
       "default": "./src/index.ts"
     },
-    "./client": {
-      "types": "./dist/client.d.ts",
-      "default": "./src/client.ts"
-    },
     "./schema": {
-      "types": "./dist/schema.d.ts",
-      "default": "./src/schema.ts"
+      "types": "./dist/schema/index.d.ts",
+      "default": "./src/schema/index.ts"
     }
   },
   "license": "MIT",
@@ -42,7 +38,8 @@
     "eslint": "catalog:",
     "prettier": "catalog:",
     "prisma": "^5.18.0",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "zod-prisma-types": "^3.1.8"
   },
   "prettier": "@acme/prettier-config"
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import type { RouterOutputs } from "@acme/api";
-import { CreatePostSchema } from "@acme/db/schema";
+import { PostCreateInputSchema } from "@acme/db/schema";
 import { cn } from "@acme/ui";
 import { Button } from "@acme/ui/button";
 import {
@@ -19,7 +19,7 @@ import { api } from "~/trpc/react";
 
 export function CreatePostForm() {
   const form = useForm({
-    schema: CreatePostSchema,
+    schema: PostCreateInputSchema,
     defaultValues: {
       content: "",
       title: "",
