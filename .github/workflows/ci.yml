@@ -53,5 +53,11 @@ jobs:
       - name: Setup
         uses: ./tooling/github/setup
 
+      # https://github.com/t3-oss/create-t3-turbo/pull/477/files#diff-b803fcb7f17ed9235f1e5cb1fcd2f5d3b2838429d4368ae4c57ce4436577f03f
+      # Normally, this would be done as part of the turbo pipeline - however since the Expo app doesn't depend on `@acme/db` it doesn't care.
+      # TODO: Free for all to find a better solution here.
+      # - name: Generate Prisma Client
+      # run: pnpm turbo generate
+
       - name: Typecheck
         run: pnpm typecheck

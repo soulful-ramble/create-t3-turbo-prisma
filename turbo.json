@@ -1,12 +1,18 @@
+// about; Prisma
+// https://github.com/t3-oss/create-t3-turbo/pull/477/files#diff-f8de965273949793edc0fbfe249bb458c0becde39b2e141db087bcbf5d4ad5e3
 {
   "$schema": "https://turborepo.org/schema.json",
   "ui": "tui",
   "tasks": {
+    "generate": {
+      "cache": false,
+      "interactive": true
+    },
     "topo": {
       "dependsOn": ["^topo"]
     },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "^generate"],
       "outputs": [".cache/tsbuildinfo.json", "dist/**"]
     },
     "dev": {
@@ -22,7 +28,7 @@
       "outputs": [".cache/.eslintcache"]
     },
     "typecheck": {
-      "dependsOn": ["^topo", "^build"],
+      "dependsOn": ["^topo", "^build", "^generate"],
       "outputs": [".cache/tsbuildinfo.json"]
     },
     "clean": {

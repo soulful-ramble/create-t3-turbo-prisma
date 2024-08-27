@@ -4,10 +4,10 @@ import type {
   Session as NextAuthSession,
 } from "next-auth";
 import { skipCSRFCheck } from "@auth/core";
-import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import Discord from "next-auth/providers/discord";
 
-import { db } from "@acme/db/client";
+import { prisma } from "@acme/db";
 import { Account, Session, User } from "@acme/db/schema";
 
 import { env } from "../env";
@@ -20,11 +20,7 @@ declare module "next-auth" {
   }
 }
 
-const adapter = DrizzleAdapter(db, {
-  usersTable: User,
-  accountsTable: Account,
-  sessionsTable: Session,
-});
+const adapter = PrismaAdapter(prisma);
 
 export const isSecureContext = env.NODE_ENV !== "development";
 
@@ -33,9 +29,9 @@ export const authConfig = {
   // In development, we need to skip checks to allow Expo to work
   ...(!isSecureContext
     ? {
-        skipCSRFCheck: skipCSRFCheck,
-        trustHost: true,
-      }
+      skipCSRFCheck: skipCSRFCheck,
+      trustHost: true,
+    }
     : {}),
   secret: env.AUTH_SECRET,
   providers: [Discord],
@@ -62,11 +58,11 @@ export const validateToken = async (
   const session = await adapter.getSessionAndUser?.(sessionToken);
   return session
     ? {
-        user: {
-          ...session.user,
-        },
-        expires: session.session.expires.toISOString(),
-      }
+      user: {
+        ...session.user,
+      },
+      expires: session.session.expires.toISOString(),
+    }
     : null;
 };
 

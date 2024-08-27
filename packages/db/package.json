@@ -24,15 +24,14 @@
     "dev": "tsc",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
-    "push": "pnpm with-env drizzle-kit push",
-    "studio": "pnpm with-env drizzle-kit studio",
+    "generate": "pnpm with-env prisma generate",
+    "push": "pnpm with-env prisma db push --skip-generate",
+    "studio": "pnpm with-env prisma studio",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@vercel/postgres": "^0.9.0",
-    "drizzle-orm": "^0.33.0",
-    "drizzle-zod": "^0.5.1",
+    "@prisma/client": "5.18.0",
     "zod": "catalog:"
   },
   "devDependencies": {
@@ -40,9 +39,9 @@
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "dotenv-cli": "^7.4.2",
-    "drizzle-kit": "^0.24.0",
     "eslint": "catalog:",
     "prettier": "catalog:",
+    "prisma": "^5.18.0",
     "typescript": "catalog:"
   },
   "prettier": "@acme/prettier-config"
