@@ -4,9 +4,8 @@
   "$schema": "https://turborepo.org/schema.json",
   "ui": "tui",
   "tasks": {
-    "generate": {
-      "cache": false,
-      "interactive": true
+    "db:generate": {
+      "cache": false
     },
     "topo": {
       "dependsOn": ["^topo"]
