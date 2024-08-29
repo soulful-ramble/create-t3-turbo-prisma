@@ -1,0 +1,43 @@
+{
+  "name": "@acme/plasmo",
+  "displayName": "Plasmo",
+  "version": "0.0.1",
+  "description": "A basic Plasmo extension.",
+  "author": "Plasmo Corp. <foss@plasmo.com>",
+  "scripts": {
+    "dev": "plasmo dev",
+    "dev:debug": "plasmo dev --verbose",
+    "build": "plasmo build",
+    "package": "plasmo package"
+  },
+  "dependencies": {
+    "plasmo": "0.88.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@acme/api": "workspace:*",
+    "@acme/auth": "workspace:*",
+    "@acme/db": "workspace:*",
+    "@acme/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@acme/eslint-config": "workspace:*",
+    "@acme/prettier-config": "workspace:*",
+    "@acme/tailwind-config": "workspace:*",
+    "@acme/tsconfig": "workspace:*",
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
+    "@types/chrome": "0.0.258",
+    "@types/node": "^20.14.15",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ],
+    "permissions": [
+      "tabs"
+    ]
+  }
+}

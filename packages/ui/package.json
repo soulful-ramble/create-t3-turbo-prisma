@@ -12,6 +12,10 @@
       "types": "./dist/src/button.d.ts",
       "default": "./src/button.tsx"
     },
+    "./input": {
+      "types": "./dist/src/input.d.ts",
+      "default": "./src/input.tsx"
+    },
     "./*": {
       "types": "./dist/src/*.d.ts",
       "default": [

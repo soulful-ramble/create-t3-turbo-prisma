@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '@acme/ui/button';
 import reactLogo from '@/assets/react.svg';
 import wxtLogo from '/wxt.svg';
-import './App.css';
+import '~/global.css';
 
 function App() {
   const [count, setCount] = useState(0);

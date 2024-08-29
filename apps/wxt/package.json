@@ -20,7 +20,8 @@
     "@acme/db": "workspace:*",
     "@acme/ui": "workspace:*",
     "react": "catalog:react18",
-    "react-dom": "catalog:react18"
+    "react-dom": "catalog:react18",
+    "lucide-react": "catalog:"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
