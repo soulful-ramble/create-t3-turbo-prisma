@@ -16,6 +16,14 @@
       "types": "./dist/src/input.d.ts",
       "default": "./src/input.tsx"
     },
+    "./form": {
+      "types": "./dist/src/form.d.ts",
+      "default": "./src/form.tsx"
+    },
+    "./toast": {
+      "types": "./dist/src/toast.d.ts",
+      "default": "./src/toast.tsx"
+    },
     "./*": {
       "types": "./dist/src/*.d.ts",
       "default": [

@@ -5,19 +5,21 @@
   "description": "A basic Plasmo extension.",
   "author": "Plasmo Corp. <foss@plasmo.com>",
   "scripts": {
-    "dev": "plasmo dev",
-    "dev:debug": "plasmo dev --verbose",
-    "build": "plasmo build",
-    "package": "plasmo package"
+    "dev": "pnpm with-env plasmo dev",
+    "dev:debug": "pnpm with-env plasmo dev --verbose",
+    "build": "pnpm with-env plasmo build",
+    "package": "plasmo package",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "plasmo": "0.88.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
     "@acme/api": "workspace:*",
     "@acme/auth": "workspace:*",
     "@acme/db": "workspace:*",
-    "@acme/ui": "workspace:*"
+    "@acme/ui": "workspace:*",
+    "@plasmohq/storage": "^1.11.0",
+    "plasmo": "0.88.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
@@ -34,10 +36,12 @@
   },
   "manifest": {
     "host_permissions": [
-      "https://*/*"
+      "https://*/*",
+      "http://*/*"
     ],
     "permissions": [
-      "tabs"
+      "tabs",
+      "storage"
     ]
   }
 }

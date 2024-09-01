@@ -8,5 +8,8 @@ export default defineConfig({
 
   manifest: {
     action: {}, // 没有这个没法给图标加事件
-  }
+    permissions: ["tabs", "storage"],
+  },
+
+
 });

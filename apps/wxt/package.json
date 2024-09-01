@@ -5,23 +5,24 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "wxt",
-    "dev:firefox": "wxt -b firefox",
+    "dev": "pnpm with-env wxt",
+    "dev:firefox": "pnpm with-env wxt -b firefox",
     "build": "wxt build",
     "build:firefox": "wxt build -b firefox",
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox",
     "compile": "tsc --noEmit",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@acme/api": "workspace:*",
     "@acme/auth": "workspace:*",
     "@acme/db": "workspace:*",
     "@acme/ui": "workspace:*",
+    "lucide-react": "catalog:",
     "react": "catalog:react18",
-    "react-dom": "catalog:react18",
-    "lucide-react": "catalog:"
+    "react-dom": "catalog:react18"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",

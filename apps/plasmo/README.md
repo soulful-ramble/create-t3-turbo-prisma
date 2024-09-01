@@ -4,13 +4,13 @@
    https://docs.plasmo.com/quickstarts/with-tailwindcss 末尾有写。
 
    ```javascript
-   import cssText from "data-text:~style.css"
+   import cssText from "data-text:~style.css";
 
    export const getStyle = () => {
-     const style = document.createElement("style")
-     style.textContent = cssText.replaceAll(":root", ":host(plasmo-csui)")
-     return style
-   }
+     const style = document.createElement("style");
+     style.textContent = cssText.replaceAll(":root", ":host(plasmo-csui)");
+     return style;
+   };
    ```
 
 # Issue
@@ -23,7 +23,9 @@
 
 ```javascript
 // import {cn } from '@acme/ui';
-import { cn } from "."
+import { cn } from ".";
 ```
 
-3. 热更新较慢
+3. 热更新较慢；热更新是全局刷新
+
+4. can not resolve wildcard exports, wxt也有这个问题

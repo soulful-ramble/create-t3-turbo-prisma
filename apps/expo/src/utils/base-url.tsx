@@ -22,5 +22,7 @@ export const getBaseUrl = () => {
       "Failed to get localhost. Please point to your production server.",
     );
   }
-  return `http://${localhost}:3000`;
+  // TODO
+  // eslint-disable-next-line turbo/no-undeclared-env-vars
+  return `http://${process.env.NEXT_PUBLIC_HOST_DOMAIN}:3000`;
 };

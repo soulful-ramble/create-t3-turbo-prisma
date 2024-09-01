@@ -15,6 +15,7 @@ export const authRouter = {
     if (!opts.ctx.token) {
       return { success: false };
     }
+    console.log(`signing out user with token ${opts.ctx.token}`);
     await invalidateSessionToken(opts.ctx.token);
     return { success: true };
   }),

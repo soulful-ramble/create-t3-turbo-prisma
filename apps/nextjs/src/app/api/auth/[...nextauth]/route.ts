@@ -6,6 +6,7 @@ import { handlers, isSecureContext } from "@acme/auth";
 // export const runtime = "edge";
 
 const EXPO_COOKIE_NAME = "__acme-expo-redirect-state";
+const EXTENSION_COOKIE_NAME = "__acme-ext-redirect-state";
 const AUTH_COOKIE_PATTERN = /authjs\.session-token=([^;]+)/;
 
 /**
@@ -42,6 +43,9 @@ export const GET = async (
   const isExpoSignIn = req.nextUrl.searchParams.get("expo-redirect");
   const isExpoCallback = cookies().get(EXPO_COOKIE_NAME);
 
+  const isExtensionSignIn = req.nextUrl.searchParams.get("ext-redirect");
+  const isExtensionCallback = cookies().get(EXTENSION_COOKIE_NAME);
+
   if (nextauthAction === "signin" && !!isExpoSignIn) {
     // set a cookie we can read in the callback
     // to know to send the user back to expo
@@ -51,6 +55,17 @@ export const GET = async (
       maxAge: 60 * 10, // 10 min
       path: "/",
     });
+  }
+
+  if (nextauthAction === "signin" && !!isExtensionSignIn) {
+    // set a cookie we can read in the callback
+    // to know to send the user back to the extension
+    cookies().set({
+      name: EXTENSION_COOKIE_NAME,
+      value: isExtensionSignIn,
+      maxAge: 60 * 10, // 10 min
+      path: "/",
+    })
   }
 
   if (nextauthAction === "callback" && !!isExpoCallback) {
@@ -74,6 +89,26 @@ export const GET = async (
     const url = new URL(isExpoCallback.value);
     url.searchParams.set("session_token", match);
     return NextResponse.redirect(url);
+  }
+
+  if (nextauthAction === "callback" && !!isExtensionCallback) {
+    cookies().delete(EXTENSION_COOKIE_NAME);
+
+    const authResponse = await handlers.GET(req);
+    const setCookie = authResponse.headers
+      .getSetCookie()
+      .find((cookie) => AUTH_COOKIE_PATTERN.test(cookie));
+
+    const match = setCookie?.match(AUTH_COOKIE_PATTERN)?.[1];
+    if (!match) {
+      throw new Error(
+        "Unable to find session cookie: " +
+        JSON.stringify(authResponse.headers.getSetCookie()),
+      );
+    }
+    const url = new URL(isExtensionCallback.value);
+    url.searchParams.set("session_token", match);
+    return NextResponse.redirect(url)
   }
 
   // Every other request just calls the default handler

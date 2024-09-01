@@ -48,6 +48,19 @@ export const authConfig = {
       };
     },
   },
+  // https://stackoverflow.com/questions/78243829/how-do-i-get-a-nextauth-user-session-on-subdomains
+  // https://github.com/nextauthjs/next-auth/discussions/4022
+  // https://github.com/nextauthjs/next-auth/discussions/1299#discussioncomment-362054
+  cookies: {
+    sessionToken: {
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: isSecureContext,
+        path: "/",
+      },
+    },
+  },
 } satisfies NextAuthConfig;
 
 export const validateToken = async (
@@ -66,5 +79,6 @@ export const validateToken = async (
 };
 
 export const invalidateSessionToken = async (token: string) => {
-  await adapter.deleteSession?.(token);
+  const sessionToken = token.slice("Bearer ".length);
+  await adapter.deleteSession?.(sessionToken);
 };
